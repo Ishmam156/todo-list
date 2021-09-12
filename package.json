@@ -1,0 +1,35 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "a todo list for the odin project",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack serve --open",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ishmam156/todo-list.git"
+  },
+  "keywords": [
+    "theodinproject",
+    "js",
+    "todolist",
+    "todo",
+    "html",
+    "css"
+  ],
+  "author": "Ishmam Chowdhury",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ishmam156/todo-list/issues"
+  },
+  "homepage": "https://github.com/Ishmam156/todo-list#readme",
+  "devDependencies": {
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.2.0"
+  }
+}
