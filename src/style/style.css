@@ -1,3 +1,15 @@
+:root {
+  --base: #d9cab3;
+  --primary-accent: #87a8a4;
+  --secondary-accent: #986d8e;
+  --base-contrast: #d9cab3;
+  --text-color: #000000;
+}
+
 body {
-  background: green;
+  background: var(--base);
+}
+
+#mainContainer {
+  color: var(--text-color);
 }
