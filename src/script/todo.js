@@ -14,8 +14,14 @@ const todo = (
   const itemDue = dueDate;
   const itemPriority = priority;
   const itemNotes = notes;
-  const itemChecklist = checklist ? [...checklist] : [];
   const itemID = projectID;
+  let itemChecklist = [];
+
+  if (checklist) {
+    checklist.forEach((item) => {
+      addToChecklist(item.task, item.status);
+    });
+  }
 
   const addToChecklist = (task, status) => {
     itemChecklist.push({
@@ -25,20 +31,29 @@ const todo = (
     });
   };
 
-  const todoItem = () => {
-    return {
-      itemID,
-      itemTitle,
-      itemDescription,
-      itemDue,
-      itemPriority,
-      itemNotes,
-      itemChecklist,
-    };
+  const updateCheckList = (id) => {
+    itemChecklist = itemChecklist.map((item) =>
+      item.id === id ? { ...item, status: !item.status } : item
+    );
+
+    return itemChecklist;
+  };
+
+  const todoItem = {
+    itemID,
+    itemTitle,
+    itemDescription,
+    itemDue,
+    itemPriority,
+    itemNotes,
+    itemChecklist,
   };
 
   return {
     todoItem,
     addToChecklist,
+    updateCheckList,
   };
 };
+
+export { todo };

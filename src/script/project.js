@@ -1,5 +1,7 @@
-const project = (id) => {
-  const projectID = id;
+import { IDGenerator } from "./helper";
+
+const project = () => {
+  const projectID = IDGenerator();
   const todoList = [];
 
   const addTodo = (todo) => {
@@ -12,3 +14,5 @@ const project = (id) => {
     addTodo,
   };
 };
+
+export { project };
