@@ -34,8 +34,16 @@ const mainLayout = (projectID) => {
     const description = document.createElement("div");
     description.textContent = taskDetails.itemDescription;
 
+    const colorPriority = {
+      high: "red",
+      medium: "lightyellow",
+      low: "lightgreen",
+    };
+
     const priority = document.createElement("div");
     priority.textContent = taskDetails.itemPriority;
+    priority.style.backgroundColor =
+      colorPriority[taskDetails.itemPriority];
 
     const dueDate = document.createElement("div");
     dueDate.textContent = taskDetails.itemDue;

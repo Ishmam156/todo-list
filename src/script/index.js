@@ -33,6 +33,17 @@ const newTodo2 = todo(
 );
 startProject.addTodo(newTodo2);
 
+const newTodo3 = todo(
+  "Do Meetings",
+  "Don't really want to",
+  "2021-12-23",
+  "medium",
+  "Really need to look into this",
+  "",
+  startProject.projectID,
+);
+startProject.addTodo(newTodo3);
+
 paintLayout(startProject.projectID);
 
 export { allProjects };
