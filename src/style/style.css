@@ -1,7 +1,7 @@
 :root {
   --base-contrast: #b8b2ab;
-  --primary-accent: #87a8a4;
-  --secondary-accent: #986d8e;
+  --primary-accent: #7aa09b;
+  --secondary-accent: #c7b7c3;
   --base: #e4e0dc;
   --text-color: #000000;
 }
@@ -19,8 +19,11 @@ body {
 
 #innerContainer {
   background-color: var(--base);
-  margin-bottom: auto;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 nav,
@@ -45,13 +48,15 @@ footer {
 }
 
 #navRight a,
-footer a {
+footer a,
+#logo a {
   text-decoration: none;
   color: var(--text-color);
 }
 
 #navRight a:hover,
-footer a:hover {
+footer a:hover,
+#logo a:hover {
   text-decoration: underline;
 }
 
@@ -66,4 +71,67 @@ footer {
 
 footer a {
   font-weight: 700;
+}
+
+#messageDiv {
+  padding: 25px 25px;
+  border-radius: 25px;
+  background-color: var(--secondary-accent);
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+}
+
+#messageDiv h3 {
+  font-weight: 700;
+  font-size: large;
+  margin: 10px 0px;
+}
+
+#messageDiv p {
+  font-weight: 500;
+  font-size: medium;
+  font-style: italic;
+  margin: 10px 0px;
+}
+
+#messageDiv button,
+#messageDiv input[type="submit"] {
+  margin-top: 5px;
+  min-width: 15vw;
+  text-transform: uppercase;
+  font-weight: 700;
+  align-self: center;
+  background-color: var(--primary-accent);
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  color: var(--text-color);
+}
+
+#messageDiv button:hover,
+#messageDiv input[type="submit"]:hover {
+  cursor: pointer;
+  background-color: #8baaa6;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+#messageDiv input {
+  margin: 2px 0px;
+}
+
+#messageDiv label {
+  font-size: small;
+  font-style: italic;
+  margin: 5px 0px;
+}
+
+#priority label {
+  margin: 0px 10px;
+}
+
+#checklistLabel {
+  margin-top: 10px !important;
+  margin-bottom: 0px !important;
 }
