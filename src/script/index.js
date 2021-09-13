@@ -12,9 +12,9 @@ const startProject = project("Starter");
 allProjects.push(startProject);
 
 const newTodo = todo(
-  "First Todo",
-  "This is going to change things",
-  "2021-09-23",
+  "Get Groceries",
+  "Should I do this?",
+  "2021-09-27",
   "high",
   "Really need to look into this",
   "",
@@ -23,7 +23,7 @@ const newTodo = todo(
 startProject.addTodo(newTodo);
 
 const newTodo2 = todo(
-  "Second Todo",
+  "Finish Forecasting",
   "This is going to change things",
   "2021-09-23",
   "low",
@@ -32,27 +32,6 @@ const newTodo2 = todo(
   startProject.projectID,
 );
 startProject.addTodo(newTodo2);
-
-// // console.log("todo", newTodo);
-// console.log("todo item", newTodo.todoItem());
-// // console.log("project", startProject);
-
-// newTodo.addToChecklist("Hungry now", false);
-// newTodo.addToChecklist("Order food", true);
-
-// const id = newTodo.todoItem().itemChecklist[0].id;
-
-// // console.log("todo item", newTodo.todoItem.itemChecklist);
-// console.log(newTodo.updateCheckList(id));
-// console.log(newTodo.updateCompletionStatus());
-// // console.log("todo item", newTodo.todoItem());
-// console.log(newTodo.updatePriority("low"));
-// // console.log("todo item", newTodo.todoItem());
-// console.log(
-//   allProjects
-//     .find((item) => item.projectID === startProject.projectID)
-//     .todoList[0].todoItem(),
-// );
 
 paintLayout(startProject.projectID);
 

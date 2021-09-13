@@ -1,73 +1,117 @@
 import { todo } from "../logic/todo";
 import { allProjects } from "../index";
 
-{
-  /* <div id="dashboard">
-  <div id="projects">
-    <h2>Projects</h2>
-    <button>+ Add Project</button>
-    <div class="singleProject">Default</div>
-    <div class="singleProject">Life</div>
-    <div class="singleProject">Oh year</div>
-  </div>
-  <div id="todos">
-    <h2>Todos</h2>
-    <button>+ Add Todo</button>
-    <div class="singleToDo">Default</div>
-    <div class="singleToDo">Life</div>
-    <div class="singleToDo">Oh year</div>
-  </div>
-  <div id="single-todo">
-    <h2>Single Todo</h2>
-    <div id="singleItem">
-      <div>Priority</div>
-      <div>Status</div>
-      <div>Checklist</div>
-    </div>
-  </div>
-</div>; */
-}
-
 const mainLayout = (projectID) => {
   const mainContainer = document.getElementById("innerContainer");
 
   mainContainer.innerHTML = ""; // remove later
 
-  const dashboardDiv = document.createElement("div");
-  // dashboardDiv.id = "dashboardDiv";
-  const welcomeMessage = document.createElement("h5");
-  welcomeMessage.textContent = "Your To-Dashboard!";
-  dashboardDiv.appendChild(welcomeMessage);
+  const dashboard = document.createElement("div");
+  dashboard.id = "dashboard";
 
-  mainContainer.appendChild(dashboardDiv);
+  const singleTaskDisplay = (taskID, projectID) => {
+    const taskDisplayCheck = document.getElementById("singleItem");
+    if (taskDisplayCheck) {
+      taskDisplayCheck.remove();
+    }
+
+    const projectTask = allProjects.find(
+      (project) => project.projectID === projectID,
+    );
+
+    const task = projectTask.todoList.find(
+      (task) => task.todoItem().id === taskID,
+    );
+
+    const taskDetails = task.todoItem();
+
+    const singleItem = document.createElement("div");
+    singleItem.id = "singleItem";
+
+    const title = document.createElement("h2");
+    title.textContent = taskDetails.itemTitle;
+
+    const description = document.createElement("div");
+    description.textContent = taskDetails.itemDescription;
+
+    const priority = document.createElement("div");
+    priority.textContent = taskDetails.itemPriority;
+
+    const dueDate = document.createElement("div");
+    dueDate.textContent = taskDetails.itemDue;
+
+    singleItem.appendChild(title);
+    singleItem.appendChild(description);
+    singleItem.appendChild(priority);
+    singleItem.appendChild(dueDate);
+    dashboard.appendChild(singleItem);
+  };
+
+  const projects = document.createElement("div");
+  projects.id = "projects";
+
+  const projectTitle = document.createElement("h2");
+  projectTitle.textContent = "Projects";
+
+  const addProjectButton = document.createElement("button");
+  addProjectButton.textContent = "+ Add Project";
+
+  projects.appendChild(projectTitle);
+  projects.appendChild(addProjectButton);
 
   allProjects.forEach((project) => {
-    const projectDiv = document.createElement("div");
-    const projectTitle = document.createElement("h3");
-    projectTitle.textContent = project.projectName;
-    projectDiv.appendChild(projectTitle);
+    const singleProject = document.createElement("div");
+    singleProject.textContent = project.projectName;
+    singleProject.className = "singleProject";
+    singleProject.dataset.projectId = project.projectID;
 
-    const toDos = document.createElement("div");
+    if (project.projectID === projectID) {
+      singleProject.style.backgroundColor = "#7aa09b";
+    }
 
-    project.todoList.forEach((item) => {
-      const todoItem = item.todoItem();
-      const todoDiv = document.createElement("div");
-      const todoTitle = document.createElement("p");
-      todoTitle.textContent = todoItem.itemTitle;
-
-      console.log(todoItem);
-
-      const todoPriority = document.createElement("p");
-      todoPriority.textContent = todoItem.itemPriority;
-
-      todoDiv.appendChild(todoTitle);
-      todoDiv.appendChild(todoPriority);
-      toDos.appendChild(todoDiv);
-    });
-
-    projectDiv.appendChild(toDos);
-    mainContainer.appendChild(projectDiv);
+    projects.appendChild(singleProject);
   });
+
+  dashboard.appendChild(projects);
+
+  const singleProject = allProjects.find(
+    (project) => project.projectID === projectID,
+  );
+
+  const todos = document.createElement("div");
+  todos.id = "todos";
+
+  const todoTitle = document.createElement("h2");
+  todoTitle.textContent = "Todos";
+
+  const addTodoButton = document.createElement("button");
+  addTodoButton.textContent = "+ Add Todo";
+
+  todos.appendChild(todoTitle);
+  todos.appendChild(addTodoButton);
+
+  const projectList = singleProject.todoList;
+
+  projectList.forEach((task) => {
+    const singleToDo = task.todoItem();
+
+    const todoDiv = document.createElement("div");
+    todoDiv.className = "singleToDo";
+    todoDiv.textContent = singleToDo.itemTitle;
+
+    // todoDiv.dataset.taskId = singleToDo.id;
+    // todoDiv.dataset.projectId = singleToDo.parentID;
+
+    todoDiv.addEventListener("click", () =>
+      singleTaskDisplay(singleToDo.id, singleToDo.parentID),
+    );
+
+    todos.appendChild(todoDiv);
+  });
+
+  dashboard.appendChild(todos);
+
+  mainContainer.appendChild(dashboard);
 };
 
 export { mainLayout };

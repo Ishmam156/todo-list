@@ -172,7 +172,9 @@ const firstVisit = (projectID) => {
     clickButton.textContent = "Yes, yes & yes!";
 
     // clickButton.addEventListener("click", firstTask);
-    clickButton.addEventListener("click", mainLayout);
+    clickButton.addEventListener("click", () =>
+      mainLayout(projectID),
+    );
 
     messageDiv.appendChild(clickButton);
     mainContainer.appendChild(messageDiv);
