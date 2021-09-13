@@ -1,4 +1,7 @@
-const firstVisit = () => {
+import { todo } from "../logic/todo";
+import { allProjects } from "../index";
+
+const firstVisit = (projectID) => {
   const mainContainer = document.getElementById("mainContainer");
 
   const welcomeMessage = document.createElement("h2");
@@ -10,9 +13,35 @@ const firstVisit = () => {
 
   todoForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    console.log(event.target.title.value);
-    console.log(event.target.duedate.value);
-    console.log(event.target.priority.value);
+
+    const project = allProjects.find(
+      (item) => item.projectID === projectID,
+    );
+
+    const checklist = Array.from(event.target.checklist)
+      .filter((item) => item.value !== "")
+      .map((item) => {
+        return {
+          task: item.value,
+        };
+      });
+
+    const newToDo = todo(
+      event.target.title.value,
+      event.target.description.value,
+      event.target.duedate.value,
+      event.target.priority.value,
+      event.target.notes.value,
+      checklist,
+      projectID,
+    );
+
+    project.addTodo(newToDo);
+    console.log(
+      project.todoList.forEach((item) =>
+        console.log(item.todoItem()),
+      ),
+    );
   });
 
   const inputItems = [
@@ -79,6 +108,10 @@ const firstVisit = () => {
     priority.value = item;
     priority.name = "priority";
 
+    if (item === "medium") {
+      priority.checked = true;
+    }
+
     priorityParent.appendChild(priority);
   });
 
@@ -96,6 +129,7 @@ const firstVisit = () => {
   for (let index = 0; index < 3; index++) {
     const checkListItem = document.createElement("li");
     const checkListInput = document.createElement("input");
+    checkListInput.name = "checklist";
     checkListInput.type = "text";
     checkListItem.appendChild(checkListInput);
     checkListParent.append(checkListItem);

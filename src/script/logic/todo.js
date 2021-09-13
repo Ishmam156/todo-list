@@ -19,12 +19,6 @@ const todo = (
   const id = IDGenerator();
   let itemChecklist = [];
 
-  if (checklist) {
-    checklist.forEach((item) => {
-      addToChecklist(item.task, item.status);
-    });
-  }
-
   const addToChecklist = (task, status) => {
     itemChecklist.push({
       task,
@@ -32,6 +26,12 @@ const todo = (
       id: IDGenerator(),
     });
   };
+
+  if (checklist) {
+    checklist.forEach((item) => {
+      addToChecklist(item.task, false);
+    });
+  }
 
   const updateCheckList = (id) => {
     itemChecklist = itemChecklist.map((item) =>

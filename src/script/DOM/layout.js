@@ -1,7 +1,7 @@
 import { firstVisit } from "./firstTime";
 
-const paintLayout = () => {
-  firstVisit();
+const paintLayout = (projectID) => {
+  firstVisit(projectID);
 };
 
 export { paintLayout };
