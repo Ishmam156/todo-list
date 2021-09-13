@@ -1,15 +1,69 @@
 :root {
-  --base: #d9cab3;
+  --base-contrast: #b8b2ab;
   --primary-accent: #87a8a4;
   --secondary-accent: #986d8e;
-  --base-contrast: #d9cab3;
+  --base: #e4e0dc;
   --text-color: #000000;
 }
 
 body {
-  background: var(--base);
+  font-family: Helvetica, sans-serif;
 }
 
 #mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+#innerContainer {
+  background-color: var(--base);
+  margin-bottom: auto;
+  height: 100vh;
+}
+
+nav,
+#navRight {
+  display: flex;
+  justify-content: space-between;
   color: var(--text-color);
+}
+
+nav,
+footer {
+  padding: 20px 50px;
+  background-color: var(--base-contrast);
+}
+
+#navRight {
+  padding-right: 20px;
+  gap: 30px;
+  font-size: large;
+  align-items: center;
+  font-weight: 500;
+}
+
+#navRight a,
+footer a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+#navRight a:hover,
+footer a:hover {
+  text-decoration: underline;
+}
+
+#logo {
+  font-size: x-large;
+  font-weight: 700;
+}
+
+footer {
+  text-align: center;
+}
+
+footer a {
+  font-weight: 700;
 }
