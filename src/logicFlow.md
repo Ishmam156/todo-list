@@ -1,0 +1,10 @@
+- Users visits website
+- If first time visit 
+    - create a default project for the user
+    - Ask user to input a todo item
+    - Add todo item to project
+    - Show view of projects and todo items
+    - Allow adding of projects and adding of todo within project
+    - Show individual todo view on the right of item
+- If repeat visit
+    - Repeat sets from first time visit line 6 to 9
