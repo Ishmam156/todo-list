@@ -12,8 +12,9 @@ const todo = (
   const itemTitle = title;
   const itemDescription = description;
   const itemDue = dueDate;
-  const itemPriority = priority;
+  let itemPriority = priority;
   const itemNotes = notes;
+  let itemCompletionStatus = false;
   const parentID = projectID;
   const id = IDGenerator();
   let itemChecklist = [];
@@ -40,21 +41,36 @@ const todo = (
     return itemChecklist;
   };
 
-  const todoItem = {
-    id,
-    parentID,
-    itemTitle,
-    itemDescription,
-    itemDue,
-    itemPriority,
-    itemNotes,
-    itemChecklist,
+  const updatePriority = (priority) => {
+    itemPriority = priority;
+    return itemPriority;
+  };
+
+  const updateCompletionStatus = () => {
+    itemCompletionStatus = !itemCompletionStatus;
+    return itemCompletionStatus;
+  };
+
+  const todoItem = () => {
+    return {
+      id,
+      parentID,
+      itemTitle,
+      itemDescription,
+      itemDue,
+      itemPriority,
+      itemNotes,
+      itemCompletionStatus,
+      itemChecklist,
+    };
   };
 
   return {
     todoItem,
     addToChecklist,
     updateCheckList,
+    updatePriority,
+    updateCompletionStatus,
   };
 };
 

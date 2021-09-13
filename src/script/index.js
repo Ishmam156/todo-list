@@ -23,17 +23,23 @@ const newTodo = todo(
 );
 startProject.addTodo(newTodo);
 
-console.log("todo", newTodo);
-console.log("todo item", newTodo.todoItem);
-console.log("project", startProject);
+// console.log("todo", newTodo);
+console.log("todo item", newTodo.todoItem());
+// console.log("project", startProject);
 
 newTodo.addToChecklist("Hungry now", false);
 newTodo.addToChecklist("Order food", true);
 
-const id = newTodo.todoItem.itemChecklist[0].id;
+const id = newTodo.todoItem().itemChecklist[0].id;
 
-console.log({ id });
-
-console.log("todo item", newTodo.todoItem.itemChecklist);
-console.log(newTodo.updateCheckList(id));
 // console.log("todo item", newTodo.todoItem.itemChecklist);
+console.log(newTodo.updateCheckList(id));
+console.log(newTodo.updateCompletionStatus());
+// console.log("todo item", newTodo.todoItem());
+console.log(newTodo.updatePriority("low"));
+// console.log("todo item", newTodo.todoItem());
+console.log(
+  allProjects
+    .find((item) => item.projectID === startProject.projectID)
+    .todoList[0].todoItem()
+);
