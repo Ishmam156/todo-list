@@ -1,4 +1,4 @@
-import { IDGenerator } from "./helper";
+import { IDGenerator } from "../helper";
 
 const todo = (
   title,
@@ -7,7 +7,7 @@ const todo = (
   priority,
   notes,
   checklist,
-  projectID
+  projectID,
 ) => {
   const itemTitle = title;
   const itemDescription = description;
@@ -35,7 +35,7 @@ const todo = (
 
   const updateCheckList = (id) => {
     itemChecklist = itemChecklist.map((item) =>
-      item.id === id ? { ...item, status: !item.status } : item
+      item.id === id ? { ...item, status: !item.status } : item,
     );
 
     return itemChecklist;

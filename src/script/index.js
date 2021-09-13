@@ -1,8 +1,8 @@
 import "../style/reset.css";
 import "../style/style.css";
 
-import { todo } from "./todo";
-import { project } from "./project";
+import { todo } from "./logic/todo";
+import { project } from "./logic/project";
 
 const allProjects = [];
 
@@ -19,7 +19,7 @@ const newTodo = todo(
   "high",
   "Really need to look into this",
   "",
-  startProject.projectID
+  startProject.projectID,
 );
 startProject.addTodo(newTodo);
 
@@ -41,5 +41,5 @@ console.log(newTodo.updatePriority("low"));
 console.log(
   allProjects
     .find((item) => item.projectID === startProject.projectID)
-    .todoList[0].todoItem()
+    .todoList[0].todoItem(),
 );

@@ -1,4 +1,4 @@
-import { IDGenerator } from "./helper";
+import { IDGenerator } from "../helper";
 
 const project = () => {
   const projectID = IDGenerator();
