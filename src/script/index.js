@@ -3,6 +3,7 @@ import "../style/style.css";
 
 import { todo } from "./logic/todo";
 import { project } from "./logic/project";
+import { paintLayout } from "./DOM/layout";
 
 const allProjects = [];
 
@@ -43,3 +44,5 @@ console.log(
     .find((item) => item.projectID === startProject.projectID)
     .todoList[0].todoItem(),
 );
+
+paintLayout();
