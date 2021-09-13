@@ -1,6 +1,33 @@
 import { todo } from "../logic/todo";
 import { allProjects } from "../index";
 
+{
+  /* <div id="dashboard">
+  <div id="projects">
+    <h2>Projects</h2>
+    <button>+ Add Project</button>
+    <div class="singleProject">Default</div>
+    <div class="singleProject">Life</div>
+    <div class="singleProject">Oh year</div>
+  </div>
+  <div id="todos">
+    <h2>Todos</h2>
+    <button>+ Add Todo</button>
+    <div class="singleToDo">Default</div>
+    <div class="singleToDo">Life</div>
+    <div class="singleToDo">Oh year</div>
+  </div>
+  <div id="single-todo">
+    <h2>Single Todo</h2>
+    <div id="singleItem">
+      <div>Priority</div>
+      <div>Status</div>
+      <div>Checklist</div>
+    </div>
+  </div>
+</div>; */
+}
+
 const mainLayout = (projectID) => {
   const mainContainer = document.getElementById("innerContainer");
 

@@ -1,9 +1,11 @@
 :root {
   --base-contrast: #b8b2ab;
+  --base-strong: #807d7b;
   --primary-accent: #7aa09b;
   --secondary-accent: #c7b7c3;
   --base: #e4e0dc;
-  --text-color: #000000;
+  --text-color-primary: #000000;
+  --text-color-secondary: #ffffff;
 }
 
 body {
@@ -30,7 +32,8 @@ nav,
 #navRight {
   display: flex;
   justify-content: space-between;
-  color: var(--text-color);
+  color: var(--text-color-primary);
+  text-transform: uppercase;
 }
 
 nav,
@@ -51,7 +54,7 @@ footer {
 footer a,
 #logo a {
   text-decoration: none;
-  color: var(--text-color);
+  color: var(--text-color-primary);
 }
 
 #navRight a:hover,
@@ -107,7 +110,7 @@ footer a {
   border: none;
   border-radius: 5px;
   padding: 10px;
-  color: var(--text-color);
+  color: var(--text-color-primary);
 }
 
 #messageDiv button:hover,
@@ -134,4 +137,93 @@ footer a {
 #checklistLabel {
   margin-top: 10px !important;
   margin-bottom: 0px !important;
+}
+
+#dashboard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+#dashboard > div {
+  padding: 25px 25px;
+  border-radius: 25px;
+  background-color: var(--secondary-accent);
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 10px;
+  min-width: 25vw;
+}
+
+.singleProject,
+.singleToDo {
+  background-color: var(--base);
+  border-radius: 10px;
+  padding: 25px 25px;
+  font-weight: 500;
+  font-size: large;
+}
+
+.singleToDo {
+  background-color: var(--primary-accent);
+}
+
+.singleProject:hover,
+.singleToDo:hover {
+  background-color: var(--primary-accent);
+  color: var(--base);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.singleToDo:hover {
+  background-color: var(--base);
+  color: var(--text-color-primary);
+}
+
+#dashboard h2 {
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+#singleItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#singleItem div {
+  padding: 25px 25px;
+  border-radius: 25px;
+  background-color: var(--base);
+  cursor: pointer;
+}
+
+#singleItem div:hover {
+  background-color: var(--primary-accent);
+  color: var(--base);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#dashboard button {
+  min-width: 15vw;
+  text-transform: uppercase;
+  font-weight: 700;
+  align-self: center;
+  background-color: var(--base-strong);
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  color: var(--text-color-secondary);
+  cursor: pointer;
+}
+
+#dashboard button:hover {
+  background-color: var(--base);
+  color: var(--text-color-primary);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
