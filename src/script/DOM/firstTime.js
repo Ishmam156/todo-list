@@ -1,11 +1,9 @@
 import { todo } from "../logic/todo";
 import { allProjects } from "../index";
+import { mainLayout } from "./mainLayout";
 
 const firstVisit = (projectID) => {
   const mainContainer = document.getElementById("innerContainer");
-
-  const logo = document.getElementById("logo");
-  logo.addEventListener("click", () => location.reload());
 
   const firstTask = () => {
     mainContainer.innerHTML = "";
@@ -38,11 +36,12 @@ const firstVisit = (projectID) => {
       );
 
       project.addTodo(newToDo);
-      console.log(
-        project.todoList.forEach((item) =>
-          console.log(item.todoItem()),
-        ),
+      project.todoList.forEach((item) =>
+        console.log(item.todoItem()),
       );
+
+      mainContainer.innerHTML = "";
+      mainLayout(projectID);
     });
 
     const inputItems = [
@@ -172,7 +171,8 @@ const firstVisit = (projectID) => {
     const clickButton = document.createElement("button");
     clickButton.textContent = "Yes, yes & yes!";
 
-    clickButton.addEventListener("click", firstTask);
+    // clickButton.addEventListener("click", firstTask);
+    clickButton.addEventListener("click", mainLayout);
 
     messageDiv.appendChild(clickButton);
     mainContainer.appendChild(messageDiv);
