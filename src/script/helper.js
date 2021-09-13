@@ -19,3 +19,8 @@ function IDGenerator() {
 }
 
 export { IDGenerator };
+
+// Object relationship
+// Checklist -> Todo -> Project
+// Checklist -> Checklist ID and Todo ID
+// Todo -> Todo ID and Project ID

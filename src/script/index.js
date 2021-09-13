@@ -4,7 +4,11 @@ import "../style/style.css";
 import { todo } from "./todo";
 import { project } from "./project";
 
+const allProjects = [];
+
 const startProject = project();
+
+allProjects.push(startProject);
 
 const date = new Date();
 

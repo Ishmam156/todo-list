@@ -14,7 +14,8 @@ const todo = (
   const itemDue = dueDate;
   const itemPriority = priority;
   const itemNotes = notes;
-  const itemID = projectID;
+  const parentID = projectID;
+  const id = IDGenerator();
   let itemChecklist = [];
 
   if (checklist) {
@@ -40,7 +41,8 @@ const todo = (
   };
 
   const todoItem = {
-    itemID,
+    id,
+    parentID,
     itemTitle,
     itemDescription,
     itemDue,
