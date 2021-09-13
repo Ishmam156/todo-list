@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/Ishmam156/todo-list#readme",
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "css-loader": "^6.2.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
