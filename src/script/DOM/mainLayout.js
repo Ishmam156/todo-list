@@ -46,9 +46,9 @@ const mainLayout = (projectID) => {
       todoDiv.textContent = singleToDo.itemTitle;
 
       const colorPriority = {
-        high: "red",
-        medium: "lightyellow",
-        low: "lightgreen",
+        high: "#EE9D94",
+        medium: "#FFD9BD",
+        low: "##9AD7A5",
       };
 
       todoDiv.style.backgroundColor =
@@ -56,7 +56,7 @@ const mainLayout = (projectID) => {
 
       if (singleToDo.itemCompletionStatus) {
         todoDiv.style.textDecoration = "line-through";
-        todoDiv.style.backgroundColor = "green";
+        todoDiv.style.backgroundColor = "#9AD7A5";
       }
 
       todoDiv.addEventListener("click", () => {
@@ -106,13 +106,8 @@ const mainLayout = (projectID) => {
     dueDate.textContent = taskDetails.itemDue;
 
     const completionColor = {
-      true: "green",
-      false: "red",
-    };
-
-    const completionTextColor = {
-      true: "white",
-      false: "black",
+      true: "#9AD7A5",
+      false: "#EE9D94",
     };
 
     const completionStatus = document.createElement("div");
@@ -122,8 +117,7 @@ const mainLayout = (projectID) => {
     completionStatus.style.backgroundColor =
       completionColor[taskDetails.itemCompletionStatus];
 
-    completionStatus.style.color =
-      completionTextColor[taskDetails.itemCompletionStatus];
+    completionStatus.style.color = "black";
 
     completionStatus.addEventListener("click", () => {
       task.updateCompletionStatus();
