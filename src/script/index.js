@@ -11,6 +11,10 @@ const startProject = project("Starter");
 
 allProjects.push(startProject);
 
+const secondProject = project("Home");
+
+allProjects.push(secondProject);
+
 const newTodo = todo(
   "Get Groceries",
   "Should I do this?",
@@ -42,7 +46,7 @@ const newTodo3 = todo(
   "",
   startProject.projectID,
 );
-startProject.addTodo(newTodo3);
+secondProject.addTodo(newTodo3);
 
 paintLayout(startProject.projectID);
 

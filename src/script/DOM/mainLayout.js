@@ -9,6 +9,63 @@ const mainLayout = (projectID) => {
   const dashboard = document.createElement("div");
   dashboard.id = "dashboard";
 
+  const toDosDisplay = (id) => {
+    const singleProject = allProjects.find(
+      (project) => project.projectID === id,
+    );
+
+    const clearDiv = document.getElementById("todos");
+    if (clearDiv) {
+      clearDiv.remove();
+    }
+
+    const taskDisplayCheck = document.getElementById("singleItem");
+    if (taskDisplayCheck) {
+      taskDisplayCheck.remove();
+    }
+
+    const todos = document.createElement("div");
+    todos.id = "todos";
+
+    const todoTitle = document.createElement("h2");
+    todoTitle.textContent = "Todos";
+
+    const addTodoButton = document.createElement("button");
+    addTodoButton.textContent = "+ Add Todo";
+
+    todos.appendChild(todoTitle);
+    todos.appendChild(addTodoButton);
+
+    const projectList = singleProject.todoList;
+
+    projectList.forEach((task) => {
+      const singleToDo = task.todoItem();
+
+      const todoDiv = document.createElement("div");
+      todoDiv.className = "singleToDo";
+      todoDiv.textContent = singleToDo.itemTitle;
+
+      const colorPriority = {
+        high: "red",
+        medium: "lightyellow",
+        low: "lightgreen",
+      };
+
+      todoDiv.style.backgroundColor =
+        colorPriority[singleToDo.itemPriority];
+
+      // todoDiv.dataset.taskId = singleToDo.id;
+      // todoDiv.dataset.projectId = singleToDo.parentID;
+
+      todoDiv.addEventListener("click", () =>
+        singleTaskDisplay(singleToDo.id, id),
+      );
+
+      todos.appendChild(todoDiv);
+      dashboard.appendChild(todos);
+    });
+  };
+
   const singleTaskDisplay = (taskID, projectID) => {
     const taskDisplayCheck = document.getElementById("singleItem");
     if (taskDisplayCheck) {
@@ -34,92 +91,87 @@ const mainLayout = (projectID) => {
     const description = document.createElement("div");
     description.textContent = taskDetails.itemDescription;
 
-    const colorPriority = {
-      high: "red",
-      medium: "lightyellow",
-      low: "lightgreen",
-    };
-
     const priority = document.createElement("div");
     priority.textContent = taskDetails.itemPriority;
-    priority.style.backgroundColor =
-      colorPriority[taskDetails.itemPriority];
 
     const dueDate = document.createElement("div");
     dueDate.textContent = taskDetails.itemDue;
+
+    const completionColor = {
+      true: "green",
+      false: "red",
+    };
+
+    const completionTextColor = {
+      true: "white",
+      false: "black",
+    };
+
+    const completionStatus = document.createElement("div");
+    completionStatus.textContent = taskDetails.itemCompletionStatus
+      ? "Completed"
+      : "Not Completed";
+    completionStatus.style.backgroundColor =
+      completionColor[taskDetails.itemCompletionStatus];
+
+    completionStatus.style.color =
+      completionTextColor[taskDetails.itemCompletionStatus];
+
+    completionStatus.addEventListener("click", () => {
+      task.updateCompletionStatus();
+      toDosDisplay(taskDetails.parentID);
+      singleTaskDisplay(taskDetails.id, taskDetails.parentID);
+    });
 
     singleItem.appendChild(title);
     singleItem.appendChild(description);
     singleItem.appendChild(priority);
     singleItem.appendChild(dueDate);
+    singleItem.appendChild(completionStatus);
     dashboard.appendChild(singleItem);
   };
 
-  const projects = document.createElement("div");
-  projects.id = "projects";
-
-  const projectTitle = document.createElement("h2");
-  projectTitle.textContent = "Projects";
-
-  const addProjectButton = document.createElement("button");
-  addProjectButton.textContent = "+ Add Project";
-
-  projects.appendChild(projectTitle);
-  projects.appendChild(addProjectButton);
-
-  allProjects.forEach((project) => {
-    const singleProject = document.createElement("div");
-    singleProject.textContent = project.projectName;
-    singleProject.className = "singleProject";
-    singleProject.dataset.projectId = project.projectID;
-
-    if (project.projectID === projectID) {
-      singleProject.style.backgroundColor = "#7aa09b";
+  const displayProjects = (id) => {
+    const clearDiv = document.getElementById("projects");
+    if (clearDiv) {
+      clearDiv.remove();
     }
+    const projects = document.createElement("div");
+    projects.id = "projects";
 
-    projects.appendChild(singleProject);
-  });
+    const projectTitle = document.createElement("h2");
+    projectTitle.textContent = "Projects";
 
-  dashboard.appendChild(projects);
+    const addProjectButton = document.createElement("button");
+    addProjectButton.textContent = "+ Add Project";
 
-  const singleProject = allProjects.find(
-    (project) => project.projectID === projectID,
-  );
+    projects.appendChild(projectTitle);
+    projects.appendChild(addProjectButton);
 
-  const todos = document.createElement("div");
-  todos.id = "todos";
+    allProjects.forEach((project) => {
+      const singleProject = document.createElement("div");
+      singleProject.textContent = project.projectName;
+      singleProject.className = "singleProject";
+      singleProject.dataset.projectId = project.projectID;
 
-  const todoTitle = document.createElement("h2");
-  todoTitle.textContent = "Todos";
+      if (project.projectID === id) {
+        singleProject.style.backgroundColor = "#7aa09b";
+      }
 
-  const addTodoButton = document.createElement("button");
-  addTodoButton.textContent = "+ Add Todo";
+      singleProject.addEventListener("click", () => {
+        displayProjects(project.projectID);
+        toDosDisplay(project.projectID);
+      });
 
-  todos.appendChild(todoTitle);
-  todos.appendChild(addTodoButton);
+      projects.appendChild(singleProject);
+    });
 
-  const projectList = singleProject.todoList;
+    dashboard.appendChild(projects);
+  };
 
-  projectList.forEach((task) => {
-    const singleToDo = task.todoItem();
-
-    const todoDiv = document.createElement("div");
-    todoDiv.className = "singleToDo";
-    todoDiv.textContent = singleToDo.itemTitle;
-
-    // todoDiv.dataset.taskId = singleToDo.id;
-    // todoDiv.dataset.projectId = singleToDo.parentID;
-
-    todoDiv.addEventListener("click", () =>
-      singleTaskDisplay(singleToDo.id, singleToDo.parentID),
-    );
-
-    todos.appendChild(todoDiv);
-  });
-
-  dashboard.appendChild(todos);
-
+  displayProjects(projectID);
   mainContainer.appendChild(dashboard);
+  toDosDisplay(projectID);
 };
 
 export { mainLayout };
