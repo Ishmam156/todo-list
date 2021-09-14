@@ -54,12 +54,14 @@ const mainLayout = (projectID) => {
       todoDiv.style.backgroundColor =
         colorPriority[singleToDo.itemPriority];
 
-      // todoDiv.dataset.taskId = singleToDo.id;
-      // todoDiv.dataset.projectId = singleToDo.parentID;
+      if (singleToDo.itemCompletionStatus) {
+        todoDiv.style.textDecoration = "line-through";
+        todoDiv.style.backgroundColor = "green";
+      }
 
-      todoDiv.addEventListener("click", () =>
-        singleTaskDisplay(singleToDo.id, id),
-      );
+      todoDiv.addEventListener("click", () => {
+        singleTaskDisplay(singleToDo.id, singleToDo.parentID);
+      });
 
       todos.appendChild(todoDiv);
       dashboard.appendChild(todos);
@@ -93,6 +95,12 @@ const mainLayout = (projectID) => {
 
     const priority = document.createElement("div");
     priority.textContent = taskDetails.itemPriority;
+
+    priority.addEventListener("click", () => {
+      task.updatePriority();
+      toDosDisplay(taskDetails.parentID);
+      singleTaskDisplay(taskDetails.id, taskDetails.parentID);
+    });
 
     const dueDate = document.createElement("div");
     dueDate.textContent = taskDetails.itemDue;

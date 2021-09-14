@@ -41,8 +41,13 @@ const todo = (
     return itemChecklist;
   };
 
-  const updatePriority = (priority) => {
-    itemPriority = priority;
+  const updatePriority = () => {
+    const priorityToggle = {
+      low: "medium",
+      medium: "high",
+      high: "low",
+    };
+    itemPriority = priorityToggle[itemPriority];
     return itemPriority;
   };
 

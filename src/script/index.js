@@ -44,7 +44,7 @@ const newTodo3 = todo(
   "medium",
   "Really need to look into this",
   "",
-  startProject.projectID,
+  secondProject.projectID,
 );
 secondProject.addTodo(newTodo3);
 
