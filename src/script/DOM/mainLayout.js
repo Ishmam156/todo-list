@@ -38,7 +38,7 @@ const mainLayout = (projectID) => {
     todos.appendChild(todoTitle);
     todos.appendChild(addTodoButton);
 
-    const projectList = singleProject.todoList;
+    const projectList = singleProject.getTodo();
 
     projectList.forEach((task) => {
       const singleToDo = task.todoItem();
@@ -66,8 +66,8 @@ const mainLayout = (projectID) => {
       });
 
       todos.appendChild(todoDiv);
-      dashboard.appendChild(todos);
     });
+    dashboard.appendChild(todos);
   };
 
   const singleTaskDisplay = (taskID, projectID) => {
@@ -80,9 +80,9 @@ const mainLayout = (projectID) => {
       (project) => project.projectID === projectID,
     );
 
-    const task = projectTask.todoList.find(
-      (task) => task.todoItem().id === taskID,
-    );
+    const task = projectTask
+      .getTodo()
+      .find((task) => task.todoItem().id === taskID);
 
     const taskDetails = task.todoItem();
 
@@ -109,7 +109,6 @@ const mainLayout = (projectID) => {
 
     const priority = document.createElement("div");
     priority.id = "todoPriority";
-    // priority.textContent = taskDetails.itemPriority;
 
     const priorityTypes = [
       { type: "low", color: pastelGreen },
@@ -185,6 +184,12 @@ const mainLayout = (projectID) => {
     deleteTask.textContent = "Delete Task";
     deleteTask.style.backgroundColor = "red";
 
+    deleteTask.addEventListener("click", () => {
+      projectTask.deleteTodo(taskID);
+      displayProjects(projectTask.projectID);
+      toDosDisplay(projectTask.projectID);
+    });
+
     singleItem.appendChild(title);
     singleItem.appendChild(descriptionLabel);
     singleItem.appendChild(description);
@@ -236,8 +241,8 @@ const mainLayout = (projectID) => {
     dashboard.appendChild(projects);
   };
 
-  displayProjects(projectID);
   mainContainer.appendChild(dashboard);
+  displayProjects(projectID);
   toDosDisplay(projectID);
 };
 

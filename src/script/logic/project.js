@@ -3,17 +3,25 @@ import { IDGenerator } from "../helper";
 const project = (name) => {
   const projectName = name;
   const projectID = IDGenerator();
-  const todoList = [];
+  let todoList = [];
 
   const addTodo = (todo) => {
     todoList.push(todo);
   };
 
+  const deleteTodo = (id) => {
+    todoList = todoList.filter((item) => item.todoItem().id !== id);
+    console.log(todoList);
+  };
+
+  const getTodo = () => todoList;
+
   return {
     projectName,
     projectID,
-    todoList,
+    getTodo,
     addTodo,
+    deleteTodo,
   };
 };
 
