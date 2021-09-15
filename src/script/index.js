@@ -28,8 +28,8 @@ startProject.addTodo(newTodo);
 
 const newTodo2 = todo(
   "Finish Forecasting",
-  "This is going to change things",
-  "2021-09-23",
+  "This is going to change things and I am now doing a big string here, let's see",
+  "2021-09-05",
   "low",
   "Really need to look into this",
   "",

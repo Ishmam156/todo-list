@@ -1,6 +1,7 @@
 import { todo } from "../logic/todo";
 import { allProjects } from "../index";
 import { pastelGreen, pastelYellow, pastelRed } from "../helper";
+import { differenceInCalendarDays } from "date-fns";
 
 const mainLayout = (projectID) => {
   const mainContainer = document.getElementById("innerContainer");
@@ -89,29 +90,83 @@ const mainLayout = (projectID) => {
     singleItem.id = "singleItem";
 
     const title = document.createElement("h2");
+    title.id = "todoTitle";
     title.textContent = taskDetails.itemTitle;
 
+    const descriptionLabel = document.createElement("label");
+    descriptionLabel.htmlFor = "todoDescription";
+    descriptionLabel.textContent = "Task description";
+    descriptionLabel.classList.add("todoLabel");
+
     const description = document.createElement("div");
+    description.id = "todoDescription";
     description.textContent = taskDetails.itemDescription;
 
-    const priority = document.createElement("div");
-    priority.textContent = taskDetails.itemPriority;
+    const priorityLabel = document.createElement("label");
+    priorityLabel.htmlFor = "todoPriority";
+    priorityLabel.textContent = "Priority";
+    priorityLabel.classList.add("todoLabel");
 
-    priority.addEventListener("click", () => {
-      task.updatePriority();
-      toDosDisplay(taskDetails.parentID);
-      singleTaskDisplay(taskDetails.id, taskDetails.parentID);
+    const priority = document.createElement("div");
+    priority.id = "todoPriority";
+    // priority.textContent = taskDetails.itemPriority;
+
+    const priorityTypes = [
+      { type: "low", color: pastelGreen },
+      { type: "medium", color: pastelYellow },
+      { type: "high", color: pastelRed },
+    ];
+
+    priorityTypes.forEach((item) => {
+      const element = document.createElement("div");
+      element.textContent = item.type;
+      element.style.backgroundColor = item.color;
+      element.style.fontSize = "14px";
+
+      element.addEventListener("click", () => {
+        task.updatePriority(item.type);
+        toDosDisplay(taskDetails.parentID);
+        singleTaskDisplay(taskDetails.id, taskDetails.parentID);
+      });
+
+      priority.appendChild(element);
     });
 
+    const dueDateLabel = document.createElement("label");
+    dueDateLabel.htmlFor = "todoDueDate";
+    dueDateLabel.textContent = "Due Date";
+    dueDateLabel.classList.add("todoLabel");
+
     const dueDate = document.createElement("div");
-    dueDate.textContent = taskDetails.itemDue;
+    dueDate.id = "todoDueDate";
+
+    const daysLeft = differenceInCalendarDays(
+      new Date(taskDetails.itemDue),
+      new Date(),
+    );
+    dueDate.textContent =
+      daysLeft > 1
+        ? `${daysLeft} days`
+        : daysLeft > 0
+        ? `${daysLeft} day`
+        : "Date over";
+
+    if (daysLeft < 0) {
+      dueDate.style.backgroundColor = pastelRed;
+    }
 
     const completionColor = {
       true: pastelGreen,
       false: pastelRed,
     };
 
+    const completionLabel = document.createElement("label");
+    completionLabel.htmlFor = "todoCompletion";
+    completionLabel.textContent = "Task Status";
+    completionLabel.classList.add("todoLabel");
+
     const completionStatus = document.createElement("div");
+    completionStatus.id = "todoCompletion";
     completionStatus.textContent = taskDetails.itemCompletionStatus
       ? "Completed"
       : "Not Completed";
@@ -126,11 +181,20 @@ const mainLayout = (projectID) => {
       singleTaskDisplay(taskDetails.id, taskDetails.parentID);
     });
 
+    const deleteTask = document.createElement("button");
+    deleteTask.textContent = "Delete Task";
+    deleteTask.style.backgroundColor = "red";
+
     singleItem.appendChild(title);
+    singleItem.appendChild(descriptionLabel);
     singleItem.appendChild(description);
+    singleItem.appendChild(priorityLabel);
     singleItem.appendChild(priority);
+    singleItem.appendChild(dueDateLabel);
     singleItem.appendChild(dueDate);
+    singleItem.appendChild(completionLabel);
     singleItem.appendChild(completionStatus);
+    singleItem.appendChild(deleteTask);
     dashboard.appendChild(singleItem);
   };
 

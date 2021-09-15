@@ -195,18 +195,40 @@ footer a {
   gap: 10px;
 }
 
+#todoPriority {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+#todoPriority > div:hover {
+  font-weight: bold;
+}
+
 #singleItem div {
-  padding: 25px 25px;
+  padding: 7px 15px;
   border-radius: 25px;
   background-color: var(--base);
   cursor: pointer;
+  max-width: 20vw;
 }
 
-#singleItem div:hover {
+#singleItem button {
+  margin-top: 5px;
+}
+
+#singleItem > div:hover {
   background-color: var(--primary-accent);
   color: var(--base);
   cursor: pointer;
   font-weight: bold;
+}
+
+#singleItem #todoPriority:hover {
+  background-color: var(--base);
+  color: var(--text-color-primary);
+  cursor: pointer;
+  font-weight: normal;
 }
 
 #dashboard button {
@@ -226,4 +248,9 @@ footer a {
   background-color: var(--base);
   color: var(--text-color-primary);
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.todoLabel {
+  font-style: italic;
+  font-size: small;
 }
