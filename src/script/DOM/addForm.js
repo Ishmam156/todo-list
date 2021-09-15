@@ -2,9 +2,29 @@ import { todo } from "../logic/todo";
 import { project } from "../logic/project";
 import { allProjects } from "../index";
 import { mainLayout } from "./mainLayout";
+import { checkBlankString, pastelRed } from "../helper";
 
 const displayForms = (projectID, type) => {
   const mainContainer = document.getElementById("innerContainer");
+
+  const displayErrorDiv = (parentNode) => {
+    const displayError = document.createElement("div");
+    displayError.style.background = pastelRed;
+    displayError.style.display = "none";
+    displayError.id = "displayError";
+    parentNode.appendChild(displayError);
+  };
+
+  const showError = (text) => {
+    const displayError = document.getElementById("displayError");
+    displayError.textContent = text;
+    displayError.style.display = "block";
+
+    setTimeout(() => {
+      displayError.textContent = "";
+      displayError.style.display = "none";
+    }, 1500);
+  };
 
   const addProjectDisplay = () => {
     mainContainer.innerHTML = "";
@@ -13,6 +33,11 @@ const displayForms = (projectID, type) => {
 
     projectForm.addEventListener("submit", (event) => {
       event.preventDefault();
+
+      if (!checkBlankString(event.target.projectLabel.value)) {
+        showError("You need to add a project name!");
+        return null;
+      }
 
       const newProject = project(event.target.projectLabel.value);
       allProjects.push(newProject);
@@ -23,6 +48,8 @@ const displayForms = (projectID, type) => {
     const header = document.createElement("h3");
     header.textContent = "Add your Project!";
     projectForm.appendChild(header);
+
+    displayErrorDiv(projectForm);
 
     const projectLabel = document.createElement("label");
     projectLabel.htmlFor = "projectLabel";
@@ -60,6 +87,14 @@ const displayForms = (projectID, type) => {
         (item) => item.projectID === projectID,
       );
 
+      if (!checkBlankString(event.target.title.value)) {
+        showError("You need to provide a title!");
+        return null;
+      } else if (!checkBlankString(event.target.description.value)) {
+        showError("You need to provide a description!");
+        return null;
+      }
+
       const newToDo = todo(
         event.target.title.value,
         event.target.description.value,
@@ -77,6 +112,8 @@ const displayForms = (projectID, type) => {
     header.textContent = "Add your To-Do!";
     todoForm.appendChild(header);
 
+    displayErrorDiv(todoForm);
+
     const inputItems = [
       {
         name: "title",
@@ -88,10 +125,6 @@ const displayForms = (projectID, type) => {
         message: "Some details:",
         value: "Life", // remove later
       },
-      // {
-      //   name: "notes",
-      //   message: "Further notes:",
-      // },
     ];
 
     inputItems.forEach((item) => {
@@ -176,7 +209,7 @@ const displayForms = (projectID, type) => {
     messageDiv.id = "messageDiv";
     const welcomeMessage = document.createElement("h3");
     welcomeMessage.textContent =
-      "Let's change those all your To-Dos into To-Dones!";
+      "Let's change all your To-Dos into To-Dones!";
     messageDiv.appendChild(welcomeMessage);
 
     const clickDetails = document.createElement("p");

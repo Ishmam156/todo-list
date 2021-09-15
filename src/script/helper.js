@@ -24,7 +24,17 @@ const pastelGreen = "#9AD7A5";
 const pastelYellow = "#FFD9BD";
 const pastelRed = "#EE9D94";
 
-export { IDGenerator, pastelGreen, pastelYellow, pastelRed };
+const checkBlankString = (string) => {
+  return string.trim().length;
+};
+
+export {
+  IDGenerator,
+  pastelGreen,
+  pastelYellow,
+  pastelRed,
+  checkBlankString,
+};
 
 // Object relationship
 // Checklist -> Todo -> Project

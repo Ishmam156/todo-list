@@ -285,3 +285,10 @@ li:before {
   text-decoration-thickness: 2px;
   text-decoration-color: var(--text-color-accent);
 }
+
+#displayError {
+  padding: 10px;
+  font-weight: bolder;
+  font-size: small;
+  border-radius: 10px;
+}
