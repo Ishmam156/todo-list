@@ -101,7 +101,7 @@ footer a {
 
 #messageDiv button,
 #messageDiv input[type="submit"] {
-  margin-top: 5px;
+  margin-top: 10px;
   min-width: 15vw;
   text-transform: uppercase;
   font-weight: 700;

@@ -1,10 +1,10 @@
-import { firstVisit } from "./addForm";
+import { displayForms } from "./addForm";
 
 const paintLayout = (projectID) => {
   const logo = document.getElementById("logo");
   logo.addEventListener("click", () => location.reload());
 
-  firstVisit(projectID, true);
+  displayForms(projectID, "first");
 };
 
 export { paintLayout };

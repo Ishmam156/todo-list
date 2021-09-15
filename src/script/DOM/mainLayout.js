@@ -2,7 +2,7 @@ import { todo } from "../logic/todo";
 import { allProjects } from "../index";
 import { pastelGreen, pastelYellow, pastelRed } from "../helper";
 import { differenceInCalendarDays } from "date-fns";
-import { firstVisit } from "./addForm";
+import { displayForms } from "./addForm";
 
 const mainLayout = (projectID) => {
   const mainContainer = document.getElementById("innerContainer");
@@ -37,8 +37,7 @@ const mainLayout = (projectID) => {
     addTodoButton.textContent = "+ Add Todo";
 
     addTodoButton.addEventListener("click", () => {
-      console.log("here");
-      firstVisit(singleProject.projectID, false);
+      displayForms(singleProject.projectID, "todo");
     });
 
     todos.appendChild(todoTitle);
@@ -224,7 +223,9 @@ const mainLayout = (projectID) => {
 
     const addProjectButton = document.createElement("button");
     addProjectButton.textContent = "+ Add Project";
-
+    addProjectButton.addEventListener("click", () => {
+      displayForms("", "project");
+    });
     projects.appendChild(projectTitle);
     projects.appendChild(addProjectButton);
 

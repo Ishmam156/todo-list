@@ -1,11 +1,54 @@
 import { todo } from "../logic/todo";
+import { project } from "../logic/project";
 import { allProjects } from "../index";
 import { mainLayout } from "./mainLayout";
 
-const firstVisit = (projectID, firstTimeStatus) => {
+const displayForms = (projectID, type) => {
   const mainContainer = document.getElementById("innerContainer");
 
-  const firstTask = () => {
+  const addProjectDisplay = () => {
+    mainContainer.innerHTML = "";
+    const projectForm = document.createElement("form");
+    projectForm.id = "messageDiv";
+
+    projectForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const newProject = project(event.target.projectLabel.value);
+      allProjects.push(newProject);
+
+      mainLayout(newProject.projectID);
+    });
+
+    const header = document.createElement("h3");
+    header.textContent = "Add your Project!";
+    projectForm.appendChild(header);
+
+    const projectLabel = document.createElement("label");
+    projectLabel.htmlFor = "projectLabel";
+    projectLabel.innerText = "Project Name:";
+    projectLabel.style.display = "block";
+    projectForm.appendChild(projectLabel);
+
+    const input = document.createElement("input");
+    input.type = "text";
+    input.name = "projectLabel";
+    input.id = "projectLabel";
+    input.required = true;
+    input.autofocus = true;
+    projectForm.appendChild(input);
+
+    const submit = document.createElement("input");
+    submit.style.display = "block";
+    submit.type = "submit";
+    submit.name = "Add";
+    submit.id = "submit";
+    projectForm.appendChild(submit);
+
+    mainContainer.appendChild(projectForm);
+  };
+
+  const addTodoDisplay = () => {
     mainContainer.innerHTML = "";
     const todoForm = document.createElement("form");
     todoForm.id = "messageDiv";
@@ -37,7 +80,6 @@ const firstVisit = (projectID, firstTimeStatus) => {
 
       project.addTodo(newToDo);
 
-      mainContainer.innerHTML = "";
       mainLayout(projectID);
     });
 
@@ -49,10 +91,12 @@ const firstVisit = (projectID, firstTimeStatus) => {
       {
         name: "title",
         message: "What to Do:",
+        value: "Testing", // remove later
       },
       {
         name: "description",
         message: "Some details:",
+        value: "Life", // remove later
       },
       // {
       //   name: "notes",
@@ -72,6 +116,7 @@ const firstVisit = (projectID, firstTimeStatus) => {
       input.name = item.name;
       input.id = item.name;
       input.required = true;
+      input.value = item.value; // remove later
 
       if (item.name === "title") {
         input.autofocus = true;
@@ -90,6 +135,7 @@ const firstVisit = (projectID, firstTimeStatus) => {
     dueDateInput.name = "duedate";
     dueDateInput.id = "duedate";
     dueDateInput.required = true;
+    dueDateInput.value = "2021-09-23"; // remove later
     todoForm.appendChild(dueDateInput);
 
     const priorityLabel = document.createElement("label");
@@ -172,7 +218,7 @@ const firstVisit = (projectID, firstTimeStatus) => {
     const clickButton = document.createElement("button");
     clickButton.textContent = "Yes, yes & yes!";
 
-    clickButton.addEventListener("click", firstTask);
+    clickButton.addEventListener("click", addTodoDisplay);
     // clickButton.addEventListener("click", () =>
     //   mainLayout(projectID),
     // );
@@ -181,11 +227,14 @@ const firstVisit = (projectID, firstTimeStatus) => {
     mainContainer.appendChild(messageDiv);
   };
 
-  if (firstTimeStatus) {
+  if (type === "first") {
     welcomeMessage();
+  } else if (type === "todo") {
+    addTodoDisplay();
   } else {
-    firstTask();
+    console.log("here");
+    addProjectDisplay();
   }
 };
 
-export { firstVisit };
+export { displayForms };
