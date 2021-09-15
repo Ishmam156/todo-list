@@ -11,7 +11,6 @@ const project = (name) => {
 
   const deleteTodo = (id) => {
     todoList = todoList.filter((item) => item.todoItem().id !== id);
-    console.log(todoList);
   };
 
   const getTodo = () => todoList;

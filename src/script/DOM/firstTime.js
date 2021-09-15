@@ -2,7 +2,7 @@ import { todo } from "../logic/todo";
 import { allProjects } from "../index";
 import { mainLayout } from "./mainLayout";
 
-const firstVisit = (projectID) => {
+const firstVisit = (projectID, firstTimeStatus) => {
   const mainContainer = document.getElementById("innerContainer");
 
   const firstTask = () => {
@@ -36,9 +36,9 @@ const firstVisit = (projectID) => {
       );
 
       project.addTodo(newToDo);
-      project.todoList.forEach((item) =>
-        console.log(item.todoItem()),
-      );
+      // project.todoList.forEach((item) =>
+      //   console.log(item.todoItem()),
+      // );
 
       mainContainer.innerHTML = "";
       mainLayout(projectID);
@@ -171,16 +171,20 @@ const firstVisit = (projectID) => {
     const clickButton = document.createElement("button");
     clickButton.textContent = "Yes, yes & yes!";
 
-    // clickButton.addEventListener("click", firstTask);
-    clickButton.addEventListener("click", () =>
-      mainLayout(projectID),
-    );
+    clickButton.addEventListener("click", firstTask);
+    // clickButton.addEventListener("click", () =>
+    //   mainLayout(projectID),
+    // );
 
     messageDiv.appendChild(clickButton);
     mainContainer.appendChild(messageDiv);
   };
 
-  welcomeMessage();
+  if (firstTimeStatus) {
+    welcomeMessage();
+  } else {
+    firstTask();
+  }
 };
 
 export { firstVisit };
