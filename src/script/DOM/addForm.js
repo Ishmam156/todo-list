@@ -124,12 +124,10 @@ const displayForms = (projectID, type) => {
       {
         name: "title",
         message: "What to Do:",
-        value: "Testing", // remove later
       },
       {
         name: "description",
         message: "Some details:",
-        value: "Life", // remove later
       },
     ];
 
@@ -145,7 +143,6 @@ const displayForms = (projectID, type) => {
       input.name = item.name;
       input.id = item.name;
       input.required = true;
-      input.value = item.value; // remove later
 
       if (item.name === "title") {
         input.autofocus = true;
