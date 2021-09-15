@@ -20,7 +20,11 @@ function IDGenerator() {
   );
 }
 
-export { IDGenerator };
+const pastelGreen = "#9AD7A5";
+const pastelYellow = "#FFD9BD";
+const pastelRed = "#EE9D94";
+
+export { IDGenerator, pastelGreen, pastelYellow, pastelRed };
 
 // Object relationship
 // Checklist -> Todo -> Project

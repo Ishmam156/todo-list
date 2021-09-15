@@ -1,5 +1,6 @@
 import { todo } from "../logic/todo";
 import { allProjects } from "../index";
+import { pastelGreen, pastelYellow, pastelRed } from "../helper";
 
 const mainLayout = (projectID) => {
   const mainContainer = document.getElementById("innerContainer");
@@ -46,9 +47,9 @@ const mainLayout = (projectID) => {
       todoDiv.textContent = singleToDo.itemTitle;
 
       const colorPriority = {
-        high: "#EE9D94",
-        medium: "#FFD9BD",
-        low: "##9AD7A5",
+        high: pastelRed,
+        medium: pastelYellow,
+        low: pastelGreen,
       };
 
       todoDiv.style.backgroundColor =
@@ -56,7 +57,7 @@ const mainLayout = (projectID) => {
 
       if (singleToDo.itemCompletionStatus) {
         todoDiv.style.textDecoration = "line-through";
-        todoDiv.style.backgroundColor = "#9AD7A5";
+        todoDiv.style.backgroundColor = pastelGreen;
       }
 
       todoDiv.addEventListener("click", () => {
@@ -106,8 +107,8 @@ const mainLayout = (projectID) => {
     dueDate.textContent = taskDetails.itemDue;
 
     const completionColor = {
-      true: "#9AD7A5",
-      false: "#EE9D94",
+      true: pastelGreen,
+      false: pastelRed,
     };
 
     const completionStatus = document.createElement("div");
