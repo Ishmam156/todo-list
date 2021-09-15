@@ -61,7 +61,8 @@ const mainLayout = (projectID) => {
         colorPriority[singleToDo.itemPriority];
 
       if (singleToDo.itemCompletionStatus) {
-        todoDiv.style.textDecoration = "line-through";
+        // todoDiv.style.textDecoration = "line-through";
+        todoDiv.classList.add("strike");
         todoDiv.style.backgroundColor = pastelGreen;
       }
 
