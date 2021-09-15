@@ -161,7 +161,6 @@ const displayForms = (projectID, type) => {
     dueDateInput.name = "duedate";
     dueDateInput.id = "duedate";
     dueDateInput.required = true;
-    dueDateInput.value = "2021-09-23"; // remove later
     todoForm.appendChild(dueDateInput);
 
     const priorityLabel = document.createElement("label");
