@@ -1,14 +1,16 @@
 import { IDGenerator, saveToLocalStorage } from "../helper";
 
+// Project Factory Function
 const project = (name, id = "") => {
   const projectName = name;
-  const projectID = id ? id : IDGenerator();
+  const projectID = id ? id : IDGenerator(); // Helps when re-rendering project from localStorage
   let todoList = [];
 
   const addTodo = (todo) => {
     todoList.push(todo);
   };
 
+  // Update localStorage on any changes made to keep updated
   const deleteTodo = (id) => {
     todoList = todoList.filter((item) => item.todoItem().id !== id);
     saveToLocalStorage();
@@ -16,6 +18,7 @@ const project = (name, id = "") => {
 
   const getTodo = () => todoList;
 
+  // Convert current project to JSON form to help with localStorage
   const toJSON = () => {
     return {
       projectName,

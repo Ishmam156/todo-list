@@ -11,6 +11,7 @@ const checkLocalStorage = JSON.parse(
 );
 let firstVisit = false;
 
+// Parse projects in Local Storage if they exist or create an initial Starter Project
 if (checkLocalStorage) {
   getFromLocalStorage(checkLocalStorage);
 } else {
@@ -22,6 +23,7 @@ if (checkLocalStorage) {
   saveToLocalStorage();
 }
 
+// On page load, default project to open is Starter
 const starterProject = allProjects.find(
   (project) => project.projectName === "Starter",
 );

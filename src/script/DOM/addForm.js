@@ -8,9 +8,11 @@ import {
   saveToLocalStorage,
 } from "../helper";
 
+// DOM element insertion of project form and to-do form
 const displayForms = (projectID, type) => {
   const mainContainer = document.getElementById("innerContainer");
 
+  // Helpers to show validation error message
   const displayErrorDiv = (parentNode) => {
     const displayError = document.createElement("div");
     displayError.style.background = pastelRed;
@@ -54,6 +56,7 @@ const displayForms = (projectID, type) => {
     header.textContent = "Add your Project!";
     projectForm.appendChild(header);
 
+    // Create blank error div
     displayErrorDiv(projectForm);
 
     const projectLabel = document.createElement("label");
@@ -118,6 +121,7 @@ const displayForms = (projectID, type) => {
     header.textContent = "Add your To-Do!";
     todoForm.appendChild(header);
 
+    // Create blank error div
     displayErrorDiv(todoForm);
 
     const inputItems = [
@@ -234,6 +238,7 @@ const displayForms = (projectID, type) => {
     mainContainer.appendChild(messageDiv);
   };
 
+  // Check which form to show to user
   if (type === "first") {
     welcomeMessage();
   } else if (type === "todo") {

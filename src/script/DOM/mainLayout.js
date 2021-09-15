@@ -3,10 +3,11 @@ import { pastelGreen, pastelYellow, pastelRed } from "../helper";
 import { differenceInCalendarDays } from "date-fns";
 import { displayForms } from "./addForm";
 
+// DOM element insertion of project, to-do and task display layout
 const mainLayout = (projectID) => {
   const mainContainer = document.getElementById("innerContainer");
 
-  mainContainer.innerHTML = ""; // remove later
+  mainContainer.innerHTML = "";
 
   const dashboard = document.createElement("div");
   dashboard.id = "dashboard";
@@ -61,7 +62,6 @@ const mainLayout = (projectID) => {
         colorPriority[singleToDo.itemPriority];
 
       if (singleToDo.itemCompletionStatus) {
-        // todoDiv.style.textDecoration = "line-through";
         todoDiv.classList.add("strike");
         todoDiv.style.backgroundColor = pastelGreen;
       }

@@ -1,4 +1,5 @@
-const displayAbout = (projectID, type) => {
+// Generate DOM elements for about page
+const displayAbout = () => {
   const mainContainer = document.getElementById("innerContainer");
 
   mainContainer.innerHTML = "";

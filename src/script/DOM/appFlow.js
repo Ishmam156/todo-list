@@ -3,6 +3,7 @@ import { displayAbout } from "./aboutPage";
 import { mainLayout } from "./mainLayout";
 
 const paintDOM = (projectID, firstVisit) => {
+  // Event listeners for navigation help
   const logoButton = document.getElementById("logo");
   logoButton.addEventListener("click", () => location.reload());
 
@@ -15,6 +16,7 @@ const paintDOM = (projectID, firstVisit) => {
   const aboutButton = document.getElementById("about");
   aboutButton.addEventListener("click", () => displayAbout());
 
+  // Show App introduction if first time visit
   if (firstVisit) {
     displayForms(projectID, "first");
   } else {
