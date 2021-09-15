@@ -2,7 +2,7 @@ import { todo } from "../logic/todo";
 import { allProjects } from "../index";
 import { pastelGreen, pastelYellow, pastelRed } from "../helper";
 import { differenceInCalendarDays } from "date-fns";
-import { firstVisit } from "./firstTime";
+import { firstVisit } from "./addForm";
 
 const mainLayout = (projectID) => {
   const mainContainer = document.getElementById("innerContainer");
@@ -81,6 +81,8 @@ const mainLayout = (projectID) => {
     if (taskDisplayCheck) {
       taskDisplayCheck.remove();
     }
+
+    console.log(projectID);
 
     const projectTask = allProjects.find(
       (project) => project.projectID === projectID,

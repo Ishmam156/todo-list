@@ -1,52 +1,38 @@
 import { IDGenerator } from "../helper";
 
-const todo = (
-  title,
-  description,
-  dueDate,
-  priority,
-  notes,
-  checklist,
-  projectID,
-) => {
+const todo = (title, description, dueDate, priority, projectID) => {
   const itemTitle = title;
   const itemDescription = description;
   const itemDue = dueDate;
   let itemPriority = priority;
-  const itemNotes = notes;
   let itemCompletionStatus = false;
   const parentID = projectID;
   const id = IDGenerator();
-  let itemChecklist = [];
+  // let itemChecklist = [];
 
-  const addToChecklist = (task, status) => {
-    itemChecklist.push({
-      task,
-      status,
-      id: IDGenerator(),
-    });
-  };
+  // const addToChecklist = (task, status) => {
+  //   itemChecklist.push({
+  //     task,
+  //     status,
+  //     id: IDGenerator(),
+  //   });
+  // };
 
-  if (checklist) {
-    checklist.forEach((item) => {
-      addToChecklist(item.task, false);
-    });
-  }
+  // if (checklist) {
+  //   checklist.forEach((item) => {
+  //     addToChecklist(item.task, false);
+  //   });
+  // }
 
-  const updateCheckList = (id) => {
-    itemChecklist = itemChecklist.map((item) =>
-      item.id === id ? { ...item, status: !item.status } : item,
-    );
+  // const updateCheckList = (id) => {
+  //   itemChecklist = itemChecklist.map((item) =>
+  //     item.id === id ? { ...item, status: !item.status } : item,
+  //   );
 
-    return itemChecklist;
-  };
+  //   return itemChecklist;
+  // };
 
   const updatePriority = (priority) => {
-    // const priorityToggle = {
-    //   low: "medium",
-    //   medium: "high",
-    //   high: "low",
-    // };
     itemPriority = priority;
     return itemPriority;
   };
@@ -64,16 +50,16 @@ const todo = (
       itemDescription,
       itemDue,
       itemPriority,
-      itemNotes,
+      // itemNotes,
       itemCompletionStatus,
-      itemChecklist,
+      // itemChecklist,
     };
   };
 
   return {
     todoItem,
-    addToChecklist,
-    updateCheckList,
+    // addToChecklist,
+    // updateCheckList,
     updatePriority,
     updateCompletionStatus,
   };
