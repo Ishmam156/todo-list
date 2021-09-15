@@ -1,11 +1,18 @@
 import { IDGenerator } from "../helper";
 
-const todo = (title, description, dueDate, priority, projectID) => {
+const todo = (
+  title,
+  description,
+  dueDate,
+  priority,
+  projectID,
+  completion = "",
+) => {
   const itemTitle = title;
   const itemDescription = description;
   const itemDue = dueDate;
   let itemPriority = priority;
-  let itemCompletionStatus = false;
+  let itemCompletionStatus = completion ? completion : false;
   const parentID = projectID;
   const id = IDGenerator();
 

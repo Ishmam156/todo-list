@@ -40,6 +40,28 @@ const newTodo3 = todo(
 );
 secondProject.addTodo(newTodo3);
 
-paintDOM(startProject.projectID);
+console.log(startProject.toJSON());
+localStorage.setItem("initialProjects", JSON.stringify(startProject));
+const check = JSON.parse(localStorage.getItem("initialProjects"));
+console.log("check", check);
+const checkConvert = project(check.projectName, check.projectID);
+
+check.todos.forEach((item) => {
+  checkConvert.addTodo(
+    todo(
+      item.title,
+      item.description,
+      item.dueDate,
+      item.priority,
+      item.parentID,
+      item.completion,
+    ),
+  );
+});
+
+console.log(checkConvert);
+console.log(checkConvert.getTodo());
+
+paintDOM(checkConvert.projectID);
 
 export { allProjects };
