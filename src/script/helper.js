@@ -1,4 +1,6 @@
 import { allProjects } from "./index";
+import { project } from "./logic/project";
+import { todo } from "./logic/todo";
 
 function IDGenerator() {
   var S4 = function () {
@@ -30,6 +32,27 @@ const checkBlankString = (string) => {
   return string.trim().length;
 };
 
+const getFromLocalStorage = (checkLocalStorage) => {
+  checkLocalStorage.map((item) => {
+    const singleProject = project(item.projectName, item.projectID);
+
+    item.todos.forEach((singleTodo) => {
+      singleProject.addTodo(
+        todo(
+          singleTodo.title,
+          singleTodo.description,
+          singleTodo.dueDate,
+          singleTodo.priority,
+          singleTodo.parentID,
+          singleTodo.completion,
+        ),
+      );
+    });
+
+    allProjects.push(singleProject);
+  });
+};
+
 const saveToLocalStorage = () => {
   const projectsToLocalStorage = allProjects.map((project) =>
     project.toJSON(),
@@ -48,6 +71,7 @@ export {
   pastelRed,
   checkBlankString,
   saveToLocalStorage,
+  getFromLocalStorage,
 };
 
 // Object relationship
