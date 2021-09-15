@@ -99,6 +99,24 @@ footer a {
   margin: 10px 0px;
 }
 
+ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+li {
+  padding-left: 1em;
+  padding-bottom: 0.5em;
+  text-indent: -1em;
+}
+
+li:before {
+  content: ">";
+  font-weight: bolder;
+  padding-right: 5px;
+}
+
 #messageDiv button,
 #messageDiv input[type="submit"] {
   margin-top: 10px;
