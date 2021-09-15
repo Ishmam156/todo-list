@@ -179,10 +179,16 @@ const displayForms = (projectID, type) => {
       "Let's change those all your To-Dos into To-Dones!";
     messageDiv.appendChild(welcomeMessage);
 
-    const clickMessage = document.createElement("p");
-    clickMessage.textContent =
-      "Are you ready to make your life easy?";
-    messageDiv.appendChild(clickMessage);
+    const clickDetails = document.createElement("p");
+    clickDetails.textContent =
+      "Your To-Dos will get added to Projects which will help you organize them!";
+    messageDiv.appendChild(clickDetails);
+
+    const clickFinalMessage = document.createElement("p");
+    clickFinalMessage.textContent =
+      "We've created the first project for you :)";
+    clickFinalMessage.id = "clickFinalMessage";
+    messageDiv.appendChild(clickFinalMessage);
 
     const clickButton = document.createElement("button");
     clickButton.textContent = "Yes, yes & yes!";

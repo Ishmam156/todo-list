@@ -5,6 +5,7 @@
   --secondary-accent: #c7b7c3;
   --base: #e4e0dc;
   --text-color-primary: #000000;
+  --text-color-accent: #5c5958;
   --text-color-secondary: #ffffff;
 }
 
@@ -97,6 +98,11 @@ footer a {
   font-size: medium;
   font-style: italic;
   margin: 10px 0px;
+}
+
+#messageDiv #clickFinalMessage {
+  font-weight: 900;
+  color: var(--text-color-accent);
 }
 
 ul {
