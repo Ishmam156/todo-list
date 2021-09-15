@@ -6,6 +6,12 @@ const paintDOM = (projectID, firstVisit) => {
   const logoButton = document.getElementById("logo");
   logoButton.addEventListener("click", () => location.reload());
 
+  const restartButton = document.getElementById("restart");
+  restartButton.addEventListener("click", () => {
+    localStorage.clear();
+    location.reload();
+  });
+
   const aboutButton = document.getElementById("about");
   aboutButton.addEventListener("click", () => displayAbout());
 
