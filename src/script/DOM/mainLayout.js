@@ -1,4 +1,3 @@
-import { todo } from "../logic/todo";
 import { allProjects } from "../index";
 import { pastelGreen, pastelYellow, pastelRed } from "../helper";
 import { differenceInCalendarDays } from "date-fns";
@@ -80,8 +79,6 @@ const mainLayout = (projectID) => {
     if (taskDisplayCheck) {
       taskDisplayCheck.remove();
     }
-
-    console.log(projectID);
 
     const projectTask = allProjects.find(
       (project) => project.projectID === projectID,

@@ -60,21 +60,11 @@ const displayForms = (projectID, type) => {
         (item) => item.projectID === projectID,
       );
 
-      // const checklist = Array.from(event.target.checklist)
-      //   .filter((item) => item.value !== "")
-      //   .map((item) => {
-      //     return {
-      //       task: item.value,
-      //     };
-      //   });
-
       const newToDo = todo(
         event.target.title.value,
         event.target.description.value,
         event.target.duedate.value,
         event.target.priority.value,
-        // event.target.notes.value,
-        // checklist,
         projectID,
       );
 
@@ -170,27 +160,6 @@ const displayForms = (projectID, type) => {
 
     todoForm.appendChild(priorityParent);
 
-    // const checkListLabel = document.createElement("label");
-    // checkListLabel.htmlFor = "checklist";
-    // checkListLabel.id = "checklistLabel";
-    // checkListLabel.style.display = "block";
-    // checkListLabel.textContent = "Task Checklist";
-    // todoForm.appendChild(checkListLabel);
-
-    // const checkListParent = document.createElement("ol");
-    // checkListParent.id = "checklist";
-
-    // for (let index = 0; index < 3; index++) {
-    //   const checkListItem = document.createElement("li");
-    //   const checkListInput = document.createElement("input");
-    //   checkListInput.name = "checklist";
-    //   checkListInput.type = "text";
-    //   checkListItem.appendChild(checkListInput);
-    //   checkListParent.append(checkListItem);
-    // }
-
-    // todoForm.appendChild(checkListParent);
-
     const submit = document.createElement("input");
     submit.style.display = "block";
     submit.type = "submit";
@@ -219,9 +188,6 @@ const displayForms = (projectID, type) => {
     clickButton.textContent = "Yes, yes & yes!";
 
     clickButton.addEventListener("click", addTodoDisplay);
-    // clickButton.addEventListener("click", () =>
-    //   mainLayout(projectID),
-    // );
 
     messageDiv.appendChild(clickButton);
     mainContainer.appendChild(messageDiv);
@@ -232,7 +198,6 @@ const displayForms = (projectID, type) => {
   } else if (type === "todo") {
     addTodoDisplay();
   } else {
-    console.log("here");
     addProjectDisplay();
   }
 };

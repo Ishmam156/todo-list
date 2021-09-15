@@ -3,16 +3,14 @@ import "../style/style.css";
 
 import { todo } from "./logic/todo";
 import { project } from "./logic/project";
-import { paintLayout } from "./DOM/appFlow";
+import { paintDOM } from "./DOM/appFlow";
 
 const allProjects = [];
-
 const startProject = project("Starter");
 
 allProjects.push(startProject);
 
 const secondProject = project("Home");
-
 allProjects.push(secondProject);
 
 const newTodo = todo(
@@ -42,6 +40,6 @@ const newTodo3 = todo(
 );
 secondProject.addTodo(newTodo3);
 
-paintLayout(startProject.projectID);
+paintDOM(startProject.projectID);
 
 export { allProjects };
