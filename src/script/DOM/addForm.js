@@ -2,7 +2,11 @@ import { todo } from "../logic/todo";
 import { project } from "../logic/project";
 import { allProjects } from "../index";
 import { mainLayout } from "./mainLayout";
-import { checkBlankString, pastelRed } from "../helper";
+import {
+  checkBlankString,
+  pastelRed,
+  saveToLocalStorage,
+} from "../helper";
 
 const displayForms = (projectID, type) => {
   const mainContainer = document.getElementById("innerContainer");
@@ -43,6 +47,7 @@ const displayForms = (projectID, type) => {
       allProjects.push(newProject);
 
       mainLayout(newProject.projectID);
+      saveToLocalStorage();
     });
 
     const header = document.createElement("h3");
@@ -104,6 +109,7 @@ const displayForms = (projectID, type) => {
       );
 
       project.addTodo(newToDo);
+      saveToLocalStorage();
 
       mainLayout(projectID);
     });

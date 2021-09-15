@@ -1,4 +1,4 @@
-import { IDGenerator } from "../helper";
+import { IDGenerator, saveToLocalStorage } from "../helper";
 
 const project = (name, id = "") => {
   const projectName = name;
@@ -11,6 +11,7 @@ const project = (name, id = "") => {
 
   const deleteTodo = (id) => {
     todoList = todoList.filter((item) => item.todoItem().id !== id);
+    saveToLocalStorage();
   };
 
   const getTodo = () => todoList;

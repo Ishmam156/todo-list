@@ -1,3 +1,5 @@
+import { allProjects } from "./index";
+
 function IDGenerator() {
   var S4 = function () {
     return (((1 + Math.random()) * 0x10000) | 0)
@@ -28,12 +30,24 @@ const checkBlankString = (string) => {
   return string.trim().length;
 };
 
+const saveToLocalStorage = () => {
+  const projectsToLocalStorage = allProjects.map((project) =>
+    project.toJSON(),
+  );
+
+  localStorage.setItem(
+    "todo-projects",
+    JSON.stringify(projectsToLocalStorage),
+  );
+};
+
 export {
   IDGenerator,
   pastelGreen,
   pastelYellow,
   pastelRed,
   checkBlankString,
+  saveToLocalStorage,
 };
 
 // Object relationship

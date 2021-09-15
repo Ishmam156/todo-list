@@ -1,4 +1,4 @@
-import { IDGenerator } from "../helper";
+import { IDGenerator, saveToLocalStorage } from "../helper";
 
 const todo = (
   title,
@@ -18,11 +18,13 @@ const todo = (
 
   const updatePriority = (priority) => {
     itemPriority = priority;
+    saveToLocalStorage();
     return itemPriority;
   };
 
   const updateCompletionStatus = () => {
     itemCompletionStatus = !itemCompletionStatus;
+    saveToLocalStorage();
     return itemCompletionStatus;
   };
 
